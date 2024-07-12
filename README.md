@@ -9,12 +9,7 @@ During my internship at IntelliInvest, I developed a smart system using Python t
 ## Flow for Running the Code
 
 1. Ensure `pure_links.py`, `all_final.py`, and `clean_send.py` are in the same directory.
-2. [Insert any additional steps or prerequisites if necessary.]
+2. Run 'pure_links.py' at the specified time intervals (specified in the code), 'pure_links.py' will then take care of running 'all_final.py' and 'clean_send.py'.
 
 ---
 
-This repository serves as a testament to my work during my internship at IntelliInvest, demonstrating my ability to leverage Python for automating critical financial processes. If you have any questions or feedback, feel free to reach out.
-
----
-
-Replace `[Insert any additional steps or prerequisites if necessary.]` with specific details about setup instructions or any dependencies needed to run your code. This structure provides a clear and informative overview for anyone visiting your GitHub repository.
