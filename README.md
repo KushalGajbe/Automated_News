@@ -9,7 +9,7 @@ During my internship at IntelliInvest, I developed a smart system using Python t
 ## Flow for Running the Code
 
 1. Ensure `pure_links.py`, `all_final.py`, and `clean_send.py` are in the same directory.
-2. Run 'pure_links.py' at the specified time intervals (specified in the code), 'pure_links.py' will then take care of running 'all_final.py' and 'clean_send.py'.
+2. Run `pure_links.py` at the specified time intervals (specified in the code), `pure_links.py` will then take care of running `all_final.py` and `clean_send.py`.
 
 ---
 
