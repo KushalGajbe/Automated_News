@@ -123,3 +123,31 @@ if response.status_code == 200:
 else:
     print(f"Failed to send article. Status code: {response.status_code}")
     print("Response:", response.text)
+
+url_notify = 'https://operations.intelliinvest.com/api/tenant/64ba5a259aac676b1e5d0810/insert-notification'
+
+# Notification data
+notification_data = {
+    "title": title,
+    "content": f"A new {title} has been published. Click to view.",
+    "thumbnailImage": [],
+    "bannerImage": [],
+    "link": "intelliinvest://portal.intelliinvest.com/news_screen?selectedNewsTab=Newswire",
+    "targetType": "group",
+    "customers": [],
+    "group": "tester",
+    "weekdays": [],
+    "month": [],
+    "isRecurring": False,
+    "medium": "APP"
+}
+
+# Send the HTTP POST request for notification
+response = requests.post(url_notify, headers=headers, data=json.dumps({"data": notification_data}))
+
+# Check the response
+if response.status_code == 200:
+    print("Notification sent successfully!")
+else:
+    print(f"Failed to send notification. Status code: {response.status_code}")
+    print("Response:", response.text)
