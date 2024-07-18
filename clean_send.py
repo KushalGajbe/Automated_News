@@ -135,7 +135,7 @@ notification_data = {
     "link": "intelliinvest://portal.intelliinvest.com/news_screen?selectedNewsTab=Newswire",
     "targetType": "group",
     "customers": [],
-    "group": "tester",
+    "group": "TESTER",
     "weekdays": [],
     "month": [],
     "isRecurring": False,
