@@ -31,7 +31,7 @@ market_holidays = [
 
 # Get today's date in YYYY-MM-DD format
 ist = pytz.timezone('Asia/Kolkata')
-today = datetime.datetime.now(ist).strftime('%Y-%m-%d')
+today = datetime.now(ist).strftime('%Y-%m-%d')
 
 # Check if today is a market holiday
 if today in market_holidays:
