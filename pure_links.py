@@ -1,3 +1,4 @@
+
 import requests
 from bs4 import BeautifulSoup
 from pymongo import MongoClient
@@ -20,6 +21,26 @@ print('-'*50)
 print('Completed imports')
 print('-'*50)
 
+# List of market holidays in YYYY-MM-DD format for year 2024.
+market_holidays = [
+    "2024-01-22", "2024-01-26", "2024-03-08", "2024-03-25", "2024-03-29",
+    "2024-04-11", "2024-04-17", "2024-05-01", "2024-05-20", "2024-06-17",
+    "2024-07-17", "2024-08-15", "2024-10-02", "2024-11-01", "2024-11-15",
+    "2024-12-25"
+]
+
+# Get today's date in YYYY-MM-DD format
+ist = pytz.timezone('Asia/Kolkata')
+today = datetime.datetime.now(ist).strftime('%Y-%m-%d')
+
+# Check if today is a market holiday
+if today in market_holidays:
+    print("Today is a market holiday. Exiting the code.")
+    exit()
+else:
+    print("Today is not a market holiday. Continuing with the code.")
+
+
 # RSS feed URL
 rss_url = ["https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNRGx6TVdZU0JXVnVMVWRDR2dKSlRpZ0FQAQ/sections/CAQiYENCQVNRZ29JTDIwdk1EbHpNV1lTQldWdUxVZENHZ0pKVGlJUENBUWFDd29KTDIwdk1EbDVOSEJ0S2hvS0dBb1VUVUZTUzBWVVUxOVRSVU5VU1U5T1gwNUJUVVVnQVNnQSouCAAqKggKIiRDQkFTRlFvSUwyMHZNRGx6TVdZU0JXVnVMVWRDR2dKSlRpZ0FQAVAB?hl=en-IN&gl=IN&ceid=IN%3Aen",
  "https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNRGx6TVdZU0JXVnVMVWRDR2dKSlRpZ0FQAQ?hl=en-IN&gl=IN&ceid=IN%3Aen"]
@@ -29,7 +50,7 @@ rss_url = ["https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNRGx6T
 # Get the current date and time in IST
 now_ist = datetime.now(pytz.timezone('Asia/Kolkata'))
 
-now_ist = now_ist.replace(hour=8, minute=20, second=0, microsecond=0)
+#now_ist = now_ist.replace(hour=16, minute=35, second=0, microsecond=0)
 
 # yesterday
 yesterday_ist = now_ist - timedelta(days=1)
@@ -321,7 +342,7 @@ if (now_ist.hour == 16 and now_ist.minute >= 30) or (now_ist.hour == 16 and now_
     """
 
     #Save the headlines in a text file
-    with open('market_index_closing.txt', 'w') as f:
+    with open('/home/inteluat/automated_news/market_index_closing.txt', 'w') as f:
         f.write(todays_headlines)
 
 
@@ -375,33 +396,36 @@ print('-'*50)
 
 print('Saving the summary...')
 # Save the final output in a text file and below it store the final summary
-with open(f'{file_to_open}.txt', 'w') as f:
+with open(f'/home/inteluat/automated_news/{file_to_open}.txt', 'w') as f:
     f.write(final_summary)
 
 print('Summary saved successfully.')
 
 
-# If current time is between 8:15 am and 8:30 am, then run all_final.py, then run clean_send.py
-if (now_ist.hour == 8 and now_ist.minute >= 15) or (now_ist.hour==8 and now_ist.minute<=59):
+# If current time is between 8:15 am and 10:00 am, then run all_final.py, then run clean_send.py
+if (now_ist.hour == 8 and now_ist.minute >= 15) or (now_ist.hour==9 and now_ist.minute<=59):
     print("Running all_final.py...")
-    exec(open("all_final.py").read())
+    exec(open("/home/inteluat/automated_news/all_final.py").read())
     print("Completed running all_final.py")
     print('-'*50)
     print("Running clean_send.py...")
-    exec(open("clean_send.py").read())
+    exec(open("/home/inteluat/automated_news/clean_send.py").read())
     print("Completed running clean_send.py")
 
-# Similarly if time is between 16:30 and 16:40, then run all_final.py, then run clean_send.py
+# Similarly if time is between 16:30 and 17:40, then run all_final.py, then run clean_send.py
 
-if (now_ist.hour == 16 and now_ist.minute >= 30) or (now_ist.hour == 17 and now_ist.minute <= 10):
+if (now_ist.hour == 16 and now_ist.minute >= 30) or (now_ist.hour == 17 and now_ist.minute <= 40):
     print("Running all_final.py...")
-    exec(open("all_final.py").read())
+    exec(open("/home/inteluat/automated_news/all_final.py").read())
     print("Completed running all_final.py")
     print('-'*50)
     print("Running clean_send.py...")
-    exec(open("clean_send.py").read())
+    exec(open("/home/inteluat/automated_news/clean_send.py").read())
     print("Completed running clean_send.py")
 
 print('-'*50)
 
 
+# pure_links.py
+with open('/home/inteluat/automated_news/pure_cron.txt', 'a') as f:
+    f.write(f'Cron job executed at {datetime.now()}\n')
