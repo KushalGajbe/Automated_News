@@ -1,0 +1,2 @@
+00 21 * * 0-4 /usr/bin/python3 /home/inteluat/automated_news/pure_links.py >> /home/inteluat/automated_news/cron_log.log 2>&1
+46 22 * * 0-4 /usr/bin/python3 /home/inteluat/automated_news/pure_links.py >> /home/inteluat/automated_news/cron_log.log 2>&1
